@@ -53,7 +53,7 @@ router.get('/:id', verifyToken, async (req, res) => {
             user: search_field
         }).skip(skip).limit(limit)
         const posts = await search.sort('-createdAt')
-        .populate("user", "avatar username")
+        .populate("user likes", "avatar username")
 
         res.json({
             postlength: posts.length,
