@@ -20,6 +20,8 @@ router.post('/',verifyToken, async (req, res) => {
 
         await newComment.save()
 
+        await Posts.findOneAndUpdate({_id :postId}, {$inc : {numComments : 1}})
+
         res.json({newComment:{...newComment._doc,user:req.user}})
 
     } catch (err) {
