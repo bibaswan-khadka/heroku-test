@@ -55,6 +55,7 @@ router.get('/:id', verifyToken, async (req, res) => {
         }).skip(skip).limit(limit)
         const posts = await search.sort('-createdAt')
         .populate("user likes", "avatar username")
+        .populate('mushroom')
 
         res.json({
             postlength: posts.length,
